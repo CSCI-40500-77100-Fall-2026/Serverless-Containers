@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" width="900" height="200" role="img" aria-label="A three-tier pet store: the browser client calls the pet store server, which reads and writes the database.">
+<title>A traditional three-tier pet store</title>
+<style>
+text { font-family: "Helvetica Neue", Arial, sans-serif; fill: #222; font-size: 18px; text-anchor: middle; }
+.label { font-size: 16px; font-weight: bold; letter-spacing: 1px; fill: #555; }
+.badge { font-size: 16px; font-weight: bold; fill: #fff; }
+.note { font-size: 15px; fill: #555; font-style: italic; }
+</style>
+<defs><marker id="h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4a90d9"/></marker></defs>
+<rect width="900" height="200" fill="#fff"/>
+<ellipse cx="130" cy="95" rx="100" ry="52" fill="#d6ecf7" stroke="#777" stroke-width="1.5"/><text x="130" y="90">Client</text><text x="130" y="112">(browser)</text>
+<path d="M232,95 L362,95" fill="none" stroke="#4a90d9" stroke-width="2.5" marker-end="url(#h)"/>
+<rect x="365.0" y="55.0" width="170" height="80" rx="6" fill="#dff0d8" stroke="#777" stroke-width="1.5"/><text x="450" y="90">Pet Store</text><text x="450" y="112">Server</text>
+<path d="M537,95 L667,95" fill="none" stroke="#4a90d9" stroke-width="2.5" marker-end="url(#h)"/>
+<path d="M675.0,45.0 L675.0,135.0 A85.0,12 0 0 0 845.0,135.0 L845.0,45.0" fill="#fbe3cf" stroke="#777" stroke-width="1.5"/><ellipse cx="760" cy="45.0" rx="85.0" ry="12" fill="#fbe3cf" stroke="#777" stroke-width="1.5"/><text x="760" y="104">Database</text>
+<text x="450" y="185" class="note">All logic (authentication, search, purchases, ...) runs in one long-lived server.</text>
+</svg>

@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use these materials, please cite them as below."
+title: "Serverless (FaaS) vs. Containers: When to Pick Which?"
+type: dataset
+authors:
+  - family-names: Khatchadourian
+    given-names: Raffi
+    affiliation: "City University of New York (CUNY) Hunter College"
+    email: khatchad@hunter.cuny.edu
+license: CC-BY-SA-4.0
+repository-code: "https://github.com/CSCI-40500-77100-Fall-2026/Serverless-Containers"
+url: "http://cs.hunter.cuny.edu/~khatchad/media/serverless_containers"
+date-released: "2026-10-15"
+keywords:
+  - serverless computing
+  - functions as a service
+  - backend as a service
+  - containers
+  - microservices
+  - cloud computing
+  - software engineering

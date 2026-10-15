@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" width="1000" height="400" role="img" aria-label="Ad click processing. Top, traditional: the ad server sends click messages through a message channel to one long-running click processor, which writes to the database. Bottom, serverless: the same pipeline, but the channel triggers click-processor functions, and the platform runs as many instances as the load needs.">
+<title>Ad click processing, traditional vs. serverless</title>
+<style>
+text { font-family: "Helvetica Neue", Arial, sans-serif; fill: #222; font-size: 18px; text-anchor: middle; }
+.label { font-size: 16px; font-weight: bold; letter-spacing: 1px; fill: #555; }
+.badge { font-size: 16px; font-weight: bold; fill: #fff; }
+.note { font-size: 15px; fill: #555; font-style: italic; }
+</style>
+<defs><marker id="h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4a90d9"/></marker></defs>
+<rect width="1000" height="400" fill="#fff"/>
+<text x="70" y="30" class="label" style="text-anchor: start">TRADITIONAL</text>
+<ellipse cx="140" cy="100" rx="75" ry="45" fill="#d6ecf7" stroke="#777" stroke-width="1.5"/><text x="140" y="95">Ad</text><text x="140" y="117">Server</text>
+<rect x="250.0" y="34.0" width="70" height="28" rx="14" fill="#fff6c2" stroke="#777" stroke-width="1.5"/><text x="285" y="54">Click!</text>
+<path d="M217,100 L282,100" fill="none" stroke="#4a90d9" stroke-width="2.5" marker-end="url(#h)"/>
+<polygon points="309.0,71.0 515.0,71.0 491.0,129.0 285.0,129.0" fill="#e6dcf0" stroke="#777" stroke-width="1.5"/><text x="400" y="95">Click Message</text><text x="400" y="117">Channel</text>
+<path d="M517,100 L592,100" fill="none" stroke="#4a90d9" stroke-width="2.5" marker-end="url(#h)"/>
+<rect x="600.0" y="65.0" width="160" height="70" rx="6" fill="#dff0d8" stroke="#777" stroke-width="1.5"/><text x="680" y="95">Click</text><text x="680" y="117">Processor</text>
+<path d="M762,100 L842,100" fill="none" stroke="#4a90d9" stroke-width="2.5" marker-end="url(#h)"/>
+<path d="M850.0,58.0 L850.0,134.0 A60.0,12 0 0 0 970.0,134.0 L970.0,58.0" fill="#fbe3cf" stroke="#777" stroke-width="1.5"/><ellipse cx="910" cy="58.0" rx="60.0" ry="12" fill="#fbe3cf" stroke="#777" stroke-width="1.5"/><text x="910" y="110">Database</text>
+<text x="70" y="220" class="label" style="text-anchor: start">SERVERLESS</text>
+<ellipse cx="140" cy="290" rx="75" ry="45" fill="#d6ecf7" stroke="#777" stroke-width="1.5"/><text x="140" y="285">Ad</text><text x="140" y="307">Server</text>
+<rect x="250.0" y="224.0" width="70" height="28" rx="14" fill="#fff6c2" stroke="#777" stroke-width="1.5"/><text x="285" y="244">Click!</text>
+<path d="M217,290 L282,290" fill="none" stroke="#4a90d9" stroke-width="2.5" marker-end="url(#h)"/>
+<polygon points="309.0,261.0 515.0,261.0 491.0,319.0 285.0,319.0" fill="#e6dcf0" stroke="#777" stroke-width="1.5"/><text x="400" y="285">Click Message</text><text x="400" y="307">Channel</text>
+<path d="M517,290 L592,290" fill="none" stroke="#4a90d9" stroke-width="2.5" marker-end="url(#h)"/>
+<rect x="620.0" y="278.0" width="160" height="64" rx="16" fill="#dff0d8" stroke="#777" stroke-width="1.5"/><rect x="610.0" y="268.0" width="160" height="64" rx="16" fill="#dff0d8" stroke="#777" stroke-width="1.5"/><rect x="600.0" y="258.0" width="160" height="64" rx="16" fill="#dff0d8" stroke="#777" stroke-width="1.5"/><text x="680" y="285">Click</text><text x="680" y="307">Processor</text>
+<path d="M780,290 L842,290" fill="none" stroke="#4a90d9" stroke-width="2.5" marker-end="url(#h)"/>
+<path d="M850.0,248.0 L850.0,324.0 A60.0,12 0 0 0 970.0,324.0 L970.0,248.0" fill="#fbe3cf" stroke="#777" stroke-width="1.5"/><ellipse cx="910" cy="248.0" rx="60.0" ry="12" fill="#fbe3cf" stroke="#777" stroke-width="1.5"/><text x="910" y="300">Database</text>
+<text x="680" y="372" class="note">Instances scale with load</text>
+</svg>
