@@ -190,12 +190,25 @@ From [Müns (2017)][muns].
 
 Costs from [Schleier-Smith et al. (2021)][cacm].
 
+## Case Study: Prime Video (2023)
+
+* Prime Video built a service that monitors its live streams for defects from serverless components (AWS Step Functions, AWS Lambda), passing video frames between them through Amazon S3.
+* It hit a hard scaling limit at about 5% of the expected load:
+	* Step Functions made several state transitions for every second of video, reaching account limits and billing per transition.
+	* The many S3 calls were expensive.
+* The team moved the service into a single process (a monolith) on Amazon EC2 and ECS.
+	* Infrastructure costs fell by over 90%, and the service scaled further.
+* Their takeaway: whether to use microservices and serverless "has to be made on a case-by-case basis."
+
+From [Kolny (2023)][prime-video].
+
 ## References
 
 1. Sommerville, I. (2020). *Engineering Software Products: An Introduction to Modern Software Engineering*. Pearson.
 1. Roberts, M. (2018). [Serverless Architectures][roberts]. martinfowler.com.
 1. Schleier-Smith, J., Sreekanti, V., Khandelwal, A., Carreira, J., Yadwadkar, N. J., Popa, R. A., Gonzalez, J. E., Stoica, I., & Patterson, D. A. (2021). [What Serverless Computing Is and Should Become: The Next Phase of Cloud Computing][cacm]. *Communications of the ACM*, 64(5), 76–84.
 1. Amazon Web Services. (2026). [Lambda Quotas][lambda-quotas]. *AWS Lambda Developer Guide*.
+1. Kolny, M. (2023, March 22). [Scaling Up the Prime Video Audio/Video Monitoring Service and Reducing Costs by 90%][prime-video]. Prime Video Tech. Archived by the Internet Archive.
 1. Müns, P. (2017). [Serverless (FaaS) vs. Containers—When to Pick Which?][muns] Serverless, Inc.
 
 [svc]: https://s3.amazonaws.com/files.commons.gc.cuny.edu/wp-content/blogs.dir/2880/files/2021/05/Serverless_vs_containers.pdf
@@ -203,3 +216,4 @@ Costs from [Schleier-Smith et al. (2021)][cacm].
 [muns]: https://www.serverless.com/blog/serverless-faas-vs-containers
 [cacm]: https://doi.org/10.1145/3406011
 [lambda-quotas]: https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html
+[prime-video]: https://web.archive.org/web/2023/https://www.primevideotech.com/video-streaming/scaling-up-the-prime-video-audio-video-monitoring-service-and-reducing-costs-by-90
