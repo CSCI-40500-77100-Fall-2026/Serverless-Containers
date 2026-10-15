@@ -22,6 +22,17 @@ license: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0
 
 From Sommerville (2020), Ch. 6.
 
+## Recall: Containers
+
+* Containers are an *operating system* virtualization technology: independent servers share a single operating system.
+	* Usually megabytes in size, whereas virtual machines (VMs) are gigabytes.
+	* Start and stop in seconds, rather than the minutes a VM needs.
+* Docker: a *Dockerfile* defines an *image*, which packages the software and everything it depends on; a *container* is a running image.
+* Kubernetes *orchestrates* containers: runs, replicates, and restarts them across many machines.
+* You built a Docker image of your own project in *Containerize Your Project*.
+
+Adapted from Sommerville (2020), Ch. 5, and [Müns (2017)][muns].
+
 ## What Is Serverless?
 
 > "Serverless architectures are application designs that incorporate third-party 'Backend as a Service' (BaaS) services, and/or that include custom code run in managed, ephemeral containers on a 'Functions as a Service' (FaaS) platform."
