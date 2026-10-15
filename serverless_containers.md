@@ -85,21 +85,11 @@ Adapted from [Roberts (2018)][roberts] and [Müns (2017)][muns].
 
 From [Schleier-Smith et al. (2021)][cacm].
 
-## Example: A Traditional Pet Store
+## Example: A Pet Store, Before and After
 
-* A typical e-commerce app: an online pet store with a traditional three-tier, client-oriented architecture.
+![A pet store, before and after going serverless](graphics/pet-store.svg){title="Adapted from Roberts (2018)."}
 
-![A traditional three-tier pet store](graphics/pet-store-traditional.svg){title="Adapted from Roberts (2018)."}
-
-Example adapted from [Roberts (2018)][roberts].
-
-## Example: A Serverless Pet Store
-
-* A serverless (FaaS) architecture may end up looking more like this:
-
-![A serverless pet store](graphics/pet-store-serverless.svg){title="Adapted from Roberts (2018)."}
-
-Example adapted from [Roberts (2018)][roberts].
+An online pet store: a traditional three-tier, client-oriented architecture (before) and the same app as a serverless architecture (after). Adapted from [Roberts (2018)][roberts].
 
 > Q: What changed at each numbered step? What did the pet store server do before?
 
