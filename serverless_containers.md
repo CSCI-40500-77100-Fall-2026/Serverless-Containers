@@ -106,51 +106,55 @@ Example adapted from [Roberts (2018)][roberts].
 
 Adapted from [Roberts (2018)][roberts], [Müns (2017)][muns], [Schleier-Smith et al. (2021)][cacm], and [AWS (2026)][lambda-quotas].
 
-## Comparing FaaS with Containers
+## Serverless: Pros and Cons
 
 :::::::::::::: {.columns}
 ::: {.column width="50%"}
 
-* Advantages of serverless
-	* Zero administration
-	* Significantly reduced administration and maintenance burden
-	* Faster time to market
-	* Auto-scaling
-	* Pay-per-execution
-	* Zero cost for idle time
+### Advantages
+
+* Zero administration: much less operations and maintenance work.
+* Faster time to market.
+* Automatic scaling.
+* Pay per execution: no cost when idle.
+* Microservice nature: a clear separation of the code.
 
 :::
 ::: {.column width="50%"}
 
-* Disadvantages of serverless
-	* No standardization
-	* Vendor lock-in
-	* "Black box" environment
-	* Cold starts
+### Disadvantages
+
+* No standardization: vendor lock-in.
+* "Black box" environment: little visibility into, or control over, where the code runs.
+* Cold starts: the first request to a new instance is slow.
+* Complex applications can be hard to build.
 
 :::
 ::::::::::::::
 
 From [Müns (2017)][muns].
 
-## Comparing FaaS with Containers (cont.)
+## Containers: Pros and Cons
 
 :::::::::::::: {.columns}
 ::: {.column width="50%"}
 
-* Advantages of containers
-	* Control and flexibility
-	* Easier migration path
-	* Portability
+### Advantages
+
+* Control and flexibility: any operating system, language, runtime version, or long-running process.
+* Easier migration path for existing (legacy) applications.
+* Portability: vendor-agnostic; runs anywhere a container runtime does.
 
 :::
 ::: {.column width="50%"}
 
-* Disadvantages of containers
-	* Administrative work
-	* More manual intervention
-	* Scaling is slower
-	* Hard to get started
+### Disadvantages
+
+* Administrative work (e.g., applying security fixes to images).
+* More manual intervention.
+* Scaling is slower.
+* Running costs: something is always running.
+* Hard to get started.
 
 :::
 ::::::::::::::
