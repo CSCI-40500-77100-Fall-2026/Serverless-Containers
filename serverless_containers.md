@@ -177,9 +177,18 @@ From [Müns (2017)][muns].
 
 ## When to Pick Which
 
-1. Costs
-1. Portability
-1. Convenience
+1. Costs.
+	* Serverless: pay only while code runs. Unit prices are higher (a Lambda function can cost about 7.5× a small VM per minute), but they include availability, monitoring, logging, and scaling.
+	* Containers: pay for capacity whether it is used or not, so steady, high load can be cheaper.
+1. Portability.
+	* Containers run anywhere a container runtime does; FaaS code depends on the provider's triggers and services.
+1. Convenience.
+	* Serverless: no infrastructure to manage, so faster iteration.
+	* Containers: full control of the operating system and runtime, at the cost of more setup and maintenance.
+
+> Rule of thumb: containers when you need flexibility or are migrating legacy services; serverless when you need speed of development, automatic scaling, and lower running costs ([Müns, 2017][muns]).
+
+Costs from [Schleier-Smith et al. (2021)][cacm].
 
 ## References
 
