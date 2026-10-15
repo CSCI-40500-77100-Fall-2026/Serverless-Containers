@@ -134,6 +134,8 @@ Adapted from [Roberts (2018)][roberts], [Müns (2017)][muns], [Schleier-Smith et
 
 From [Müns (2017)][muns].
 
+> *Note*: Since 2017, CloudEvents (a CNCF graduated project since 2024) has standardized event formats, and Knative and OpenFaaS run functions on any Kubernetes cluster. Each provider's APIs and triggers still differ. Cold starts can be reduced, e.g., with AWS Lambda's provisioned concurrency (always-warm instances, at a cost) or SnapStart (snapshots of initialized functions).
+
 ## Containers: Pros and Cons
 
 :::::::::::::: {.columns}
@@ -160,6 +162,8 @@ From [Müns (2017)][muns].
 ::::::::::::::
 
 From [Müns (2017)][muns].
+
+> *Note*: Since 2017, managed container platforms (e.g., Google Cloud Run, AWS Fargate, Azure Container Apps) have taken over much of the administration and scale containers automatically. Some (e.g., Cloud Run, Azure Container Apps) scale to zero when idle, so nothing runs, and nothing is billed, without traffic.
 
 ## When to Pick Which
 
