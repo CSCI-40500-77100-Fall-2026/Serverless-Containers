@@ -165,6 +165,16 @@ From [Müns (2017)][muns].
 
 > *Note*: Since 2017, managed container platforms (e.g., Google Cloud Run, AWS Fargate, Azure Container Apps) have taken over much of the administration and scale containers automatically. Some (e.g., Cloud Run, Azure Container Apps) scale to zero when idle, so nothing runs, and nothing is billed, without traffic.
 
+## The Line Has Blurred
+
+* FaaS platforms run container images.
+	* E.g., AWS Lambda since 2020 (images up to 10 GB).
+* Functions and containers share a platform.
+	* E.g., Google's Cloud Functions became Cloud Run functions (2024), running on its container service.
+* "Serverless" functions can run on reserved servers.
+	* E.g., AWS Lambda Managed Instances (2025) runs functions on EC2 instances in your own account, billed for the instances (plus a management fee and per-request charges) rather than per execution.
+* So the question is less "serverless *or* containers?" than *how much of the platform you manage* and *how you pay for it*.
+
 ## When to Pick Which
 
 1. Costs
