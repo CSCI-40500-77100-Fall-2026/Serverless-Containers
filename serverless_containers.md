@@ -99,8 +99,12 @@ Example adapted from [Roberts (2018)][roberts].
 * Functions are triggered by event types that the provider defines (e.g., HTTP requests, file uploads, schedules, queue messages).
 * Upload the function's code; the provider does the rest (provisioning, running, and scaling it).
 * The whole application's business logic is implemented as *functions* and *events*.
+* Limits on the programming model:
+	* A maximum execution time (e.g., 15 minutes on AWS Lambda).
+	* No persistent state between invocations.
+	* Restricted networking: functions pass data through shared storage (e.g., S3), not directly to each other.
 
-Adapted from [Roberts (2018)][roberts] and [Müns (2017)][muns].
+Adapted from [Roberts (2018)][roberts], [Müns (2017)][muns], [Schleier-Smith et al. (2021)][cacm], and [AWS (2026)][lambda-quotas].
 
 ## Comparing FaaS with Containers
 
@@ -164,9 +168,11 @@ From [Müns (2017)][muns].
 1. Sommerville, I. (2020). *Engineering Software Products: An Introduction to Modern Software Engineering*. Pearson.
 1. Roberts, M. (2018). [Serverless Architectures][roberts]. martinfowler.com.
 1. Schleier-Smith, J., Sreekanti, V., Khandelwal, A., Carreira, J., Yadwadkar, N. J., Popa, R. A., Gonzalez, J. E., Stoica, I., & Patterson, D. A. (2021). [What Serverless Computing Is and Should Become: The Next Phase of Cloud Computing][cacm]. *Communications of the ACM*, 64(5), 76–84.
+1. Amazon Web Services. (2026). [Lambda Quotas][lambda-quotas]. *AWS Lambda Developer Guide*.
 1. Müns, P. (2017). [Serverless (FaaS) vs. Containers—When to Pick Which?][muns] Serverless, Inc.
 
 [svc]: https://s3.amazonaws.com/files.commons.gc.cuny.edu/wp-content/blogs.dir/2880/files/2021/05/Serverless_vs_containers.pdf
 [roberts]: https://martinfowler.com/articles/serverless.html
 [muns]: https://www.serverless.com/blog/serverless-faas-vs-containers
 [cacm]: https://doi.org/10.1145/3406011
+[lambda-quotas]: https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html
