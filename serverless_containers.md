@@ -10,6 +10,16 @@ license: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0
 
 # Serverless (FaaS) vs. Containers: When to Pick Which?
 
+## Agenda
+
+* Why this matters: microservices and containers.
+* What serverless is: BaaS and FaaS.
+* Examples.
+* Features and limits of FaaS.
+* Pros and cons of serverless and of containers.
+* How the two have converged.
+* When to pick which, with a case study.
+
 ## Why Should We Know?
 
 * Serverless and containers let us build applications based on a microservices architecture.
@@ -262,6 +272,15 @@ From [Kolny (2023)][prime-video].
 - Not an indictment of serverless: the team chose it to build quickly, and the post itself says the choice is case by case. Many commentators read it as a workload that outgrew its first design.
 - A class project's traffic is small and spiky, the opposite case, where serverless tends to be cheap.
 :::
+
+## Summary
+
+* Serverless covers BaaS (third-party services) and FaaS (developer code run as managed, event-triggered, stateless functions).
+	* Its essential qualities: hidden servers, pay-as-you-go pricing, and automatic scaling.
+* Serverless trades control for convenience: no servers to manage and no charge when idle, but vendor lock-in, cold starts, and limits on execution time, state, and networking.
+* Containers trade convenience for control: portable and flexible, but more to manage and, unless the platform scales them to zero, always running.
+* The two have converged: functions run as containers, and containers run serverless.
+* Neither is better in general: choose by cost, portability, and convenience for *your* workload.
 
 ## References
 
