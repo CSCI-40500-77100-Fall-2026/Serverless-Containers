@@ -85,7 +85,7 @@ Adapted from [Roberts (2018)][roberts] and [Müns (2017)][muns].
 
 From [Schleier-Smith et al. (2021)][cacm].
 
-## Example of FaaS
+## Example: A Traditional Pet Store
 
 * A typical e-commerce app: an online pet store with a traditional three-tier, client-oriented architecture.
 
@@ -93,7 +93,7 @@ From [Schleier-Smith et al. (2021)][cacm].
 
 Example adapted from [Roberts (2018)][roberts].
 
-## Example of FaaS (cont.)
+## Example: A Serverless Pet Store
 
 * A serverless (FaaS) architecture may end up looking more like this:
 
@@ -113,7 +113,7 @@ Example adapted from [Roberts (2018)][roberts].
 Tie-back: one server became several independently deployed pieces, i.e., microservices. The cost: more moving parts to monitor, and logic spread across the client, third parties, and functions.
 :::
 
-## Example of FaaS (cont.)
+## Example: Ad Click Processing
 
 * A different example is an online advertisement system:
 
@@ -255,7 +255,7 @@ Other factors worth naming:
 
 * Prime Video built a service that monitors its live streams for defects from serverless components (AWS Step Functions, AWS Lambda), passing video frames between them through Amazon S3.
 * It hit a hard scaling limit at about 5% of the expected load:
-	* Step Functions made several state transitions for every second of video, reaching account limits and billing per transition.
+	* Step Functions made several state transitions for every second of each stream, reaching account limits and billing per transition.
 	* The many S3 calls were expensive.
 * The team moved the service into a single process (a monolith) on Amazon EC2 and ECS.
 	* Infrastructure costs fell by over 90%, and the service scaled further.
@@ -266,10 +266,10 @@ From [Kolny (2023)][prime-video].
 > Q: Why did serverless cost so much here? Would the same happen to your project?
 
 ::: notes
-- The load was constant and heavy (every second of thousands of streams), so pay-per-use had no idle time to save; reserved capacity (EC2 Savings Plans) was cheaper.
+- The load was constant and heavy (every second of thousands of streams), so pay-per-use had no idle time to save. On EC2 and ECS, the team could also use Savings Plans to lower costs further.
 - The design was very fine-grained: per-transition billing in Step Functions multiplied with every second of video.
 - Data passed between functions through S3 (the restricted networking limit); in one process, it passes through memory for free.
-- Not an indictment of serverless: the team chose it to build quickly, and the post itself says the choice is case by case. Many commentators read it as a workload that outgrew its first design.
+- Not an indictment of serverless: the team chose it because it was quick to build with, and the post itself says the choice is case by case. Some commentators argued the workload was a poor fit for that fine-grained design, rather than proof that serverless is wasteful.
 - A class project's traffic is small and spiky, the opposite case, where serverless tends to be cheap.
 :::
 
@@ -284,12 +284,12 @@ From [Kolny (2023)][prime-video].
 
 ## References
 
-1. Sommerville, I. (2020). *Engineering Software Products: An Introduction to Modern Software Engineering*. Pearson.
-1. Roberts, M. (2018). [Serverless Architectures][roberts]. martinfowler.com.
-1. Schleier-Smith, J., Sreekanti, V., Khandelwal, A., Carreira, J., Yadwadkar, N. J., Popa, R. A., Gonzalez, J. E., Stoica, I., & Patterson, D. A. (2021). [What Serverless Computing Is and Should Become: The Next Phase of Cloud Computing][cacm]. *Communications of the ACM*, 64(5), 76–84.
 1. Amazon Web Services. (2026). [Lambda Quotas][lambda-quotas]. *AWS Lambda Developer Guide*.
 1. Kolny, M. (2023, March 22). [Scaling Up the Prime Video Audio/Video Monitoring Service and Reducing Costs by 90%][prime-video]. Prime Video Tech. Archived by the Internet Archive.
 1. Müns, P. (2017). [Serverless (FaaS) vs. Containers—When to Pick Which?][muns] Serverless, Inc.
+1. Roberts, M. (2018). [Serverless Architectures][roberts]. martinfowler.com.
+1. Schleier-Smith, J., Sreekanti, V., Khandelwal, A., Carreira, J., Yadwadkar, N. J., Popa, R. A., Gonzalez, J. E., Stoica, I., & Patterson, D. A. (2021). [What Serverless Computing Is and Should Become: The Next Phase of Cloud Computing][cacm]. *Communications of the ACM*, 64(5), 76–84.
+1. Sommerville, I. (2020). *Engineering Software Products: An Introduction to Modern Software Engineering*. Pearson.
 
 [svc]: https://s3.amazonaws.com/files.commons.gc.cuny.edu/wp-content/blogs.dir/2880/files/2021/05/Serverless_vs_containers.pdf
 [roberts]: https://martinfowler.com/articles/serverless.html
