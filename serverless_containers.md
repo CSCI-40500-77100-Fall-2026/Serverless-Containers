@@ -14,6 +14,12 @@ license: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0
 
 * Serverless and containers let us build applications based on a microservices architecture.
 
+> Q: How is your project deployed (or how will it be)? Is that serverless, containers, or something else?
+
+::: notes
+Open-ended. Typical answers: Vercel or Netlify (serverless functions for the backend, static hosting for the frontend); Cloudflare Workers (serverless); Render, Railway, or Fly.io (containers, often built from the project's Dockerfile); Firebase or Supabase (BaaS); a virtual machine running Docker. Point out that many class projects already mix the two, and the rest of the lecture gives criteria for choosing.
+:::
+
 ## Recall: Microservices
 
 > "A microservice is an independent and self-contained software component that runs in its own process and communicates with other microservices using lightweight protocols."
@@ -85,6 +91,18 @@ Example adapted from [Roberts (2018)][roberts].
 
 Example adapted from [Roberts (2018)][roberts].
 
+> Q: What changed at each numbered step? What did the pet store server do before?
+
+::: notes
+1. Authentication moved to a third-party BaaS service (e.g., Auth0).
+2. The client reads the product database directly (e.g., Firebase), which a third party hosts; the client needs a different security profile than server code.
+3. Logic moved into the client, e.g., tracking the user's session and the app's page structure. The client becomes a single-page app.
+4. Search, which needs a lot of data, stays on the server side as a FaaS function behind an API gateway (which maps HTTP requests to functions).
+5. Purchases become a separate function, kept on the server side for security (e.g., prices and payments can't be trusted to the client).
+
+Tie-back: one server became several independently deployed pieces, i.e., microservices. The cost: more moving parts to monitor, and logic spread across the client, third parties, and functions.
+:::
+
 ## Example of FaaS (cont.)
 
 * A different example is an online advertisement system:
@@ -92,6 +110,15 @@ Example adapted from [Roberts (2018)][roberts].
 ![Ad click processing, traditional vs. serverless](graphics/ad-clicks.svg){title="Adapted from Roberts (2018)."}
 
 Example adapted from [Roberts (2018)][roberts].
+
+> Q: What happens in each design when clicks spike tenfold?
+
+::: notes
+- Traditional: the one click processor falls behind and the queue grows until someone adds capacity, or autoscaling (if configured) catches up.
+- Serverless: the platform starts more function instances automatically, up to the account's concurrency limit, and scales back to zero after the spike; you pay only for the invocations.
+- Caveats: the database must absorb the extra concurrent writes, new instances may hit cold starts, and parallel instances may process messages out of order.
+- The architecture barely changed here, unlike the pet store; Roberts notes this is why asynchronous message processing is a very popular use of serverless.
+:::
 
 ## Features of FaaS
 
@@ -105,6 +132,12 @@ Example adapted from [Roberts (2018)][roberts].
 	* Restricted networking: functions pass data through shared storage (e.g., S3), not directly to each other.
 
 Adapted from [Roberts (2018)][roberts], [Müns (2017)][muns], [Schleier-Smith et al. (2021)][cacm], and [AWS (2026)][lambda-quotas].
+
+> Q: Where does a FaaS application keep its state, e.g., a shopping cart?
+
+::: notes
+Outside the function: in a database (e.g., DynamoDB, PostgreSQL), a cache or key-value store (e.g., Redis), object storage (e.g., S3), or on the client (e.g., cookies, local storage). In-memory state may vanish after the invocation, since the next request may reach a different instance. This matches Sommerville's stateless services (Ch. 6): state is stored in a database or kept by the service requestor.
+:::
 
 ## Serverless: Pros and Cons
 
@@ -175,6 +208,12 @@ From [Müns (2017)][muns].
 	* E.g., AWS Lambda Managed Instances (2025) runs functions on EC2 instances in your own account, billed for the instances (plus a management fee and per-request charges) rather than per execution.
 * So the question is less "serverless *or* containers?" than *how much of the platform you manage* and *how you pay for it*.
 
+> Q: Your project has a `Dockerfile`. What would it take to run it serverless?
+
+::: notes
+Push the image to a registry and deploy it to a serverless container platform (e.g., Google Cloud Run). The app must listen on the port the platform provides (often via a `PORT` environment variable), keep no state in memory or on local disk between requests, and start quickly. Moving it to FaaS instead would usually mean restructuring the code into event handlers.
+:::
+
 ## When to Pick Which
 
 1. Costs.
@@ -190,6 +229,18 @@ From [Müns (2017)][muns].
 
 Costs from [Schleier-Smith et al. (2021)][cacm].
 
+> Q: Which would you choose for your project? Why?
+
+::: notes
+Other factors worth naming:
+
+- Workload shape: short, event-driven tasks (webhooks, image resizing, scheduled jobs) suit FaaS; long-running processes, WebSockets, and background workers suit containers.
+- Latency: user-facing requests that can't tolerate cold starts favor always-on containers (or warm instances).
+- Existing code and team skills: an existing app is easier to containerize than to split into functions.
+- Mixing is common: e.g., a containerized API plus functions for scheduled jobs.
+- For a class project with little traffic, serverless free tiers are often enough; a container image keeps the project portable across hosts.
+:::
+
 ## Case Study: Prime Video (2023)
 
 * Prime Video built a service that monitors its live streams for defects from serverless components (AWS Step Functions, AWS Lambda), passing video frames between them through Amazon S3.
@@ -201,6 +252,16 @@ Costs from [Schleier-Smith et al. (2021)][cacm].
 * Their takeaway: whether to use microservices and serverless "has to be made on a case-by-case basis."
 
 From [Kolny (2023)][prime-video].
+
+> Q: Why did serverless cost so much here? Would the same happen to your project?
+
+::: notes
+- The load was constant and heavy (every second of thousands of streams), so pay-per-use had no idle time to save; reserved capacity (EC2 Savings Plans) was cheaper.
+- The design was very fine-grained: per-transition billing in Step Functions multiplied with every second of video.
+- Data passed between functions through S3 (the restricted networking limit); in one process, it passes through memory for free.
+- Not an indictment of serverless: the team chose it to build quickly, and the post itself says the choice is case by case. Many commentators read it as a workload that outgrew its first design.
+- A class project's traffic is small and spiky, the opposite case, where serverless tends to be cheap.
+:::
 
 ## References
 
