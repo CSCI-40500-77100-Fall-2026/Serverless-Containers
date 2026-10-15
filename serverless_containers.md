@@ -89,18 +89,18 @@ From [Schleier-Smith et al. (2021)][cacm].
 
 ![A pet store, before and after going serverless](graphics/pet-store.svg){title="Adapted from Roberts (2018)."}
 
-An online pet store: a traditional three-tier, client-oriented architecture (before) and the same app as a serverless architecture (after). Adapted from [Roberts (2018)][roberts].
+An online pet store: a traditional three-tier, client-oriented architecture (before) and the same app as a serverless architecture (after). Steps 1–2 use BaaS, step 3 moves logic into the client, and steps 4–5 use FaaS. Adapted from [Roberts (2018)][roberts].
 
 > Q: What changed at each numbered step? What did the pet store server do before?
 
 ::: notes
 1. Authentication moved to a third-party BaaS service (e.g., Auth0).
-2. The client reads the product database directly (e.g., Firebase), which a third party hosts; the client needs a different security profile than server code.
+2. The client reads the product database directly (e.g., Firebase), which a third party hosts; the client needs a different security profile than server code. This is only safe with strict access rules on the database (e.g., Firebase Security Rules, Supabase row-level security). Missing or overly broad rules are a common way apps leak data.
 3. Logic moved into the client, e.g., tracking the user's session and the app's page structure. The client becomes a single-page app.
 4. Search, which needs a lot of data, stays on the server side as a FaaS function behind an API gateway (which maps HTTP requests to functions).
 5. Purchases become a separate function, kept on the server side for security (e.g., prices and payments can't be trusted to the client).
 
-Tie-back: one server became several independently deployed pieces, i.e., microservices. The cost: more moving parts to monitor, and logic spread across the client, third parties, and functions.
+Steps 1–2 are BaaS and steps 4–5 are FaaS; step 3 follows from the first two. Tie-back: one server became several independently deployed pieces, i.e., microservices. The cost: more moving parts to monitor, and logic spread across the client, third parties, and functions.
 :::
 
 ## Example: Ad Click Processing
