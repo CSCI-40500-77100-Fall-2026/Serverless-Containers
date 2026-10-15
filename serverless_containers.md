@@ -44,7 +44,7 @@ From [Roberts (2018)][roberts].
 ### Backend as a Service (BaaS)
 
 * Applications that rely mostly or entirely on third-party, cloud-hosted services for server-side logic and state.
-* E.g., cloud-accessible databases (Parse, Firebase) and authentication services (Auth0, AWS Cognito).
+* E.g., cloud-accessible databases (Firebase, Supabase) and authentication services (Auth0, Amazon Cognito).
 
 ### Functions as a Service (FaaS)
 
@@ -53,9 +53,10 @@ From [Roberts (2018)][roberts].
 	* Event-triggered.
 	* Ephemeral: may last for only one invocation.
 	* Fully managed by a third party.
-* AWS Lambda is one of the most popular FaaS platforms.
+* E.g., AWS Lambda (launched 2014), Azure Functions, Google Cloud Run functions, Cloudflare Workers, Vercel Functions.
+	* Some run functions in lighter sandboxes than containers (e.g., Cloudflare Workers uses V8 isolates).
 
-Adapted from [Roberts (2018)][roberts].
+Adapted from [Roberts (2018)][roberts] and [Müns (2017)][muns].
 
 ## Example of FaaS
 
