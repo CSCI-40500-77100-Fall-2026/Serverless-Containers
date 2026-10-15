@@ -107,15 +107,16 @@ Steps 1–2 are BaaS and steps 4–5 are FaaS; step 3 follows from the first two
 
 * A different example is an online advertisement system:
 
-![Ad click processing, traditional vs. serverless](graphics/ad-clicks.svg){title="Adapted from Roberts (2018)."}
+![Ad click processing: traditional, serverless, and containers](graphics/ad-clicks.svg){title="Adapted from Roberts (2018)."}
 
-Example adapted from [Roberts (2018)][roberts].
+Traditional and serverless designs adapted from [Roberts (2018)][roberts]; the container design is an addition.
 
 > Q: What happens in each design when clicks spike tenfold?
 
 ::: notes
 - Traditional: the one click processor falls behind and the queue grows until someone adds capacity, or autoscaling (if configured) catches up.
 - Serverless: the platform starts more function instances automatically, up to the account's concurrency limit, and scales back to zero after the spike; you pay only for the invocations.
+- Containers: an autoscaler (e.g., KEDA on Kubernetes, or the one built into Azure Container Apps) watches the queue length and adds replicas, then removes them, down to zero, when the queue drains. Starting a container takes longer than starting a function, so the queue grows a little more before the replicas catch up.
 - Caveats: the database must absorb the extra concurrent writes, new instances may hit cold starts, and parallel instances may process messages out of order.
 - The architecture barely changed here, unlike the pet store; Roberts notes this is why asynchronous message processing is a very popular use of serverless.
 :::
