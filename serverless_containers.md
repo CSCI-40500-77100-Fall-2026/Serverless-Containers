@@ -114,11 +114,14 @@ Traditional and serverless designs adapted from [Roberts (2018)][roberts]; the c
 > Q: What happens in each design when clicks spike tenfold?
 
 ::: notes
+What "Click!" means: when a user clicks an ad, the ad server immediately redirects them to the advertiser's site and also posts a "click message" to the channel. The click processor handles those messages later, asynchronously, updating the database (e.g., charging the advertiser's budget).
+
 - Traditional: the one click processor falls behind and the queue grows until someone adds capacity, or autoscaling (if configured) catches up.
 - Serverless: the platform starts more function instances automatically, up to the account's concurrency limit, and scales back to zero after the spike; you pay only for the invocations.
 - Containers: an autoscaler (e.g., KEDA on Kubernetes, or the one built into Azure Container Apps) watches the queue length and adds replicas, then removes them, down to zero, when the queue drains. Starting a container takes longer than starting a function, so the queue grows a little more before the replicas catch up.
 - Caveats: the database must absorb the extra concurrent writes, new instances may hit cold starts, and parallel instances may process messages out of order.
 - The architecture barely changed here, unlike the pet store; Roberts notes this is why asynchronous message processing is a very popular use of serverless.
+- Which design wins depends on the traffic's shape. Bursty clicks favor serverless: nothing runs, and nothing is billed, between bursts. A large ad network's clicks are steady and heavy, the same shape as the Prime Video case later in the lecture, where always-on capacity was much cheaper.
 :::
 
 ## Features of FaaS
@@ -262,6 +265,7 @@ From [Kolny (2023)][prime-video].
 - Data passed between functions through S3 (the restricted networking limit); in one process, it passes through memory for free.
 - Not an indictment of serverless: the team chose it because it was quick to build with, and the post itself says the choice is case by case. Some commentators argued the workload was a poor fit for that fine-grained design, rather than proof that serverless is wasteful.
 - A class project's traffic is small and spiky, the opposite case, where serverless tends to be cheap.
+- Compare the ad click example: the same trade-off decides whether its click processor should be functions or containers.
 :::
 
 ## Summary
