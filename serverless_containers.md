@@ -87,9 +87,7 @@ From [Schleier-Smith et al. (2021)][cacm].
 
 ## Example: A Pet Store, Before and After
 
-::: {style="text-align: center"}
-![A pet store, before and after going serverless](graphics/pet-store.svg){title="Adapted from Roberts (2018)."}\
-:::
+![Before and after](graphics/pet-store.svg){title="Adapted from Roberts (2018)."}
 
 An online pet store: a traditional three-tier, client-oriented architecture (before) and the same app as a serverless architecture (after). Steps 1–2 use BaaS, step 3 moves logic into the client, and steps 4–5 use FaaS. Adapted from [Roberts (2018)][roberts].
 
@@ -107,9 +105,7 @@ Steps 1–2 are BaaS and steps 4–5 are FaaS; step 3 follows from the first two
 
 ## Example: Ad Click Processing
 
-::: {style="text-align: center"}
-![Ad click processing: traditional, serverless, and containers](graphics/ad-clicks.svg){title="Adapted from Roberts (2018)."}\
-:::
+![Traditional, serverless, and containers](graphics/ad-clicks.svg){title="Adapted from Roberts (2018)."}
 
 An online advertisement system's click processing, three ways. Traditional and serverless designs adapted from [Roberts (2018)][roberts]; the container design is an addition.
 
